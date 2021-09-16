@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Tip calculator app</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Spli<br>tter</h1>
+  </header>
+  <main>
+    <article class="controls">
+      <p>Bill</p>
+      <input class="controls__input bill" type="number">
+      <p>Select Tip %</p>
+      <section class="controls__buttons">
+        <button class="controls__buttons__item">5%</button>
+        <button class="controls__buttons__item">10%</button>
+        <button class="controls__buttons__item">15%</button>
+        <button class="controls__buttons__item">25%</button>
+        <button class="controls__buttons__item">50%</button>
+        <button class="controls__buttons__item custom">Custom</button>
+      </section>
+      <p>Number of people</p>
+      <input type="number" class="controls__input people">
+    </article>
+    <article class="output">
+      <div class="output__item">
+        <div class="output__item__description">
+          <p class="output__item__description__title">Tip Amount</p>
+          <p class="output__item__description__person">/ person</p>
+        </div>
+        <p class="output__item__number">$0.00</p>
+      </div>
+      <div class="output__item">
+        <div class="output__item__description">
+          <p class="output__item__description__title">Tip Amount</p>
+          <p class="output__item__description__person">/ person</p>
+        </div>
+        <p class="output__item__number">$0.00</p>
+      </div>
+      <button class="output__reset">Reset</button>
+    </article>
+  </main>
+
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+
+</html>

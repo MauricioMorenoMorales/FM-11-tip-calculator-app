@@ -1,0 +1,58 @@
+@import './_reset-styles.styl'
+@import './_tokens.styl'
+
+html
+	font-family ffPrimary
+
+body
+	background-color lightGrayishCyan
+	max-width 375px
+	margin 0 auto
+	margin-top 50px
+
+header
+	text-align center
+	color darkGrayishCyan
+	text-transform uppercase
+	letter-spacing 10px
+
+main
+	background-color white
+	padding 20px
+	color darkGrayishCyan
+	font-weight fwThin
+	font-weight fwBold
+	border-radius 20px
+
+input
+	width 100%
+	height 40px
+	background-color darken(lightGray, 3%)
+	border none
+	text-align end
+	color veryDarkCyan
+	font-weight fwBold
+	padding-right 15px
+	font-size fontSizeInput
+	background-repeat no-repeat
+	background-position-x 15px
+	background-position-y center
+	&.bill
+		background-image url('../images/icon-dollar.svg')
+	&.people
+		background-image url('../images/icon-person.svg')
+
+.controls
+	&__buttons
+		display grid
+		grid-template-columns 48% 48%
+		gap 4%
+		&__item
+			margin-bottom 8px
+			background-color veryDarkCyan
+			color white
+			border-radius none
+
+p
+	margin-bottom 3px
+
