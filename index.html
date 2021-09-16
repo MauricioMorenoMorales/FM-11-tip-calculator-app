@@ -19,7 +19,8 @@
   <main>
     <article class="controls">
       <p>Bill</p>
-      <input class="controls__input bill" type="number">
+      <input class="controls__input bill" type="number" min="0">
+      <p class="error bill">Cannot be negative</p>
       <p>Select Tip %</p>
       <section class="controls__buttons">
         <button class="controls__buttons__item">5%</button>
@@ -27,10 +28,11 @@
         <button class="controls__buttons__item">15%</button>
         <button class="controls__buttons__item">25%</button>
         <button class="controls__buttons__item">50%</button>
-        <button class="controls__buttons__item custom">Custom</button>
+        <input class="controls__buttons__item input" placeholder="Custom" type="number" min="0">
       </section>
       <p>Number of people</p>
-      <input type="number" class="controls__input people">
+      <input type="number" class="controls__input people" min="1">
+      <p class="error people">Can't be zero'</p>
     </article>
     <article class="output">
       <div class="output__item">
@@ -42,7 +44,7 @@
       </div>
       <div class="output__item">
         <div class="output__item__description">
-          <p class="output__item__description__title">Tip Amount</p>
+          <p class="output__item__description__title">Total</p>
           <p class="output__item__description__person">/ person</p>
         </div>
         <p class="output__item__number">$0.00</p>
