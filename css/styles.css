@@ -100,6 +100,9 @@ input.people {
 .controls__buttons__item:hover {
   background-color: #005d62;
 }
+.controls__buttons__item.active {
+  background-color: #007278;
+}
 .controls__buttons__item.input {
   background-color: #eaf4f6;
   color: #5e7a7d;

@@ -1,0 +1,51 @@
+const $billInput = document.querySelector('.controls__input.bill')
+const $peopleInput = document.querySelector('.controls__input.people')
+const $resetInput = document.querySelector('.output__reset')
+const $controllerButtons = document.querySelectorAll('.controls__buttons__item')
+const $customPercentage = document.querySelector('.controls__buttons__item.input')
+
+const $tipAmount = document.querySelector('.output__item__number.amount')
+const $tipTotal = document.querySelector('.output__item__number.total')
+
+let percentage = 0
+let people = 0
+let bill = 0
+
+const showinfo = () => {
+	const totalTip = (percentage * bill) / 100
+	const tipForEachPerson = totalTip / people
+
+	if(isNaN(totalTip) || isNaN(tipForEachPerson)) return
+
+	$tipAmount.innerHTML = `${totalTip.toFixed(2)}`
+	$tipTotal.innerHTML = `${tipForEachPerson.toFixed(2)}`
+
+}
+
+document.addEventListener('input', event => {
+	if(event.target.matches('.controls__buttons__item.input')){
+		percentage = parseInt($customPercentage.value) || 0
+		console.log(percentage)
+		showinfo()
+	}
+	if(event.target.matches('.controls__input.bill')){
+		bill = parseInt($billInput.value) || 0
+		console.log(people)
+		showinfo()
+	}
+	if(event.target.matches('.controls__input.people')){
+		people = parseInt($peopleInput.value) || 0
+		console.log(people)
+		showinfo()
+	}
+})
+
+document.addEventListener('click', event => {
+	if(event.target.matches('.controls__buttons__item')){
+		$controllerButtons.forEach(element => element.classList.remove('active'))
+		event.target.classList.add('active')
+		percentage = Number(event.target.innerHTML.replace('%', ''))
+		console.log(percentage)
+		showinfo()
+	}
+})
