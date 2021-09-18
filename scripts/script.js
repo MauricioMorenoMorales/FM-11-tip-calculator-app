@@ -9,6 +9,7 @@ const $customPercentage = document.querySelector(
 );
 const $billError = document.querySelector('.error.bill');
 const $peopleError = document.querySelector('.error.people');
+const $percentageValueError = document.querySelector('.error.percentage');
 const $tipAmount = document.querySelector('.output__item__number.amount');
 const $tipTotal = document.querySelector('.output__item__number.total');
 
@@ -16,7 +17,9 @@ let percentage = 0;
 let people = 0;
 let bill = 0;
 
+// Renderizes the data when an input change has happened
 const showinfo = () => {
+	// Show alerts when some field is empty
 	if (!$billInput.value || $billInput.value < 0) {
 		$billError.classList.add('active');
 		$billInput.classList.add('active');
@@ -31,9 +34,15 @@ const showinfo = () => {
 		$peopleError.classList.remove('active');
 		$peopleInput.classList.remove('active');
 	}
+	percentage === 0
+		? $percentageValueError.classList.add('active')
+		: $percentageValueError.classList.remove('active');
+
+	// Calculate the values and add them in the interface
 	const totalTip = (percentage * bill) / 100;
 	const tipForEachPerson = totalTip / people;
 	const totalForEachPerson = tipForEachPerson + bill / people;
+
 	$tipAmount.innerHTML = `$${
 		tipForEachPerson === Infinity ||
 		tipForEachPerson < 0 ||
@@ -50,6 +59,7 @@ const showinfo = () => {
 	}`;
 };
 
+//Refresh data when an imput value has changed
 document.addEventListener('input', event => {
 	if (event.target.matches('.controls__buttons__item.input')) {
 		percentage = parseInt($customPercentage.value) || 0;
@@ -65,8 +75,10 @@ document.addEventListener('input', event => {
 	}
 });
 
+//Refresh data when a button has clicked
 document.addEventListener('click', event => {
 	if (event.target.matches('.controls__buttons__item')) {
+		if (event.target.matches('.controls__buttons__item.input')) return;
 		$controllerButtons.forEach(element => element.classList.remove('active'));
 		event.target.classList.add('active');
 		percentage = Number(event.target.innerHTML.replace('%', ''));
