@@ -7,10 +7,8 @@ const $controllerButtons = document.querySelectorAll(
 const $customPercentage = document.querySelector(
 	'.controls__buttons__item.input',
 );
-
 const $billError = document.querySelector('.error.bill');
 const $peopleError = document.querySelector('.error.people');
-
 const $tipAmount = document.querySelector('.output__item__number.amount');
 const $tipTotal = document.querySelector('.output__item__number.total');
 
@@ -35,17 +33,18 @@ const showinfo = () => {
 	}
 	const totalTip = (percentage * bill) / 100;
 	const tipForEachPerson = totalTip / people;
-	const totalForEachPerson = totalTip / people + bill / people;
-
-	if (isNaN(tipForEachPerson) || isNaN(totalForEachPerson)) return;
-
+	const totalForEachPerson = tipForEachPerson + bill / people;
 	$tipAmount.innerHTML = `$${
-		tipForEachPerson === Infinity || tipForEachPerson < 0
+		tipForEachPerson === Infinity ||
+		tipForEachPerson < 0 ||
+		isNaN(tipForEachPerson)
 			? '0.00'
 			: tipForEachPerson.toFixed(2)
 	}`;
 	$tipTotal.innerHTML = `$${
-		totalForEachPerson === Infinity || totalForEachPerson < 0
+		totalForEachPerson === Infinity ||
+		totalForEachPerson < 0 ||
+		isNaN(totalForEachPerson)
 			? '0.00'
 			: totalForEachPerson.toFixed(2)
 	}`;
@@ -54,17 +53,14 @@ const showinfo = () => {
 document.addEventListener('input', event => {
 	if (event.target.matches('.controls__buttons__item.input')) {
 		percentage = parseInt($customPercentage.value) || 0;
-		console.log(percentage);
 		showinfo();
 	}
 	if (event.target.matches('.controls__input.bill')) {
 		bill = parseInt($billInput.value) || 0;
-		console.log(people);
 		showinfo();
 	}
 	if (event.target.matches('.controls__input.people')) {
 		people = parseInt($peopleInput.value) || 0;
-		console.log(people);
 		showinfo();
 	}
 });
@@ -74,7 +70,20 @@ document.addEventListener('click', event => {
 		$controllerButtons.forEach(element => element.classList.remove('active'));
 		event.target.classList.add('active');
 		percentage = Number(event.target.innerHTML.replace('%', ''));
-		console.log(percentage);
 		showinfo();
+	}
+	if (event.target.matches('.output__reset')) {
+		percentage = 0;
+		people = 0;
+		bill = 0;
+		$billInput.value = 0;
+		$controllerButtons.forEach(element => element.classList.remove('active'));
+		$customPercentage.value = '';
+		$peopleInput.value = 0;
+		showinfo();
+		$billError.classList.remove('active');
+		$peopleError.classList.remove('active');
+		$peopleInput.classList.remove('active');
+		$billInput.classList.remove('active');
 	}
 });
