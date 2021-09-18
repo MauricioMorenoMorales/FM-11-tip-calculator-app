@@ -71,6 +71,9 @@ input.bill {
 input.people {
   background-image: url("../images/icon-person.svg");
 }
+input.active {
+  border: 1px solid #f00;
+}
 .error {
   color: #f00;
   margin: 0;

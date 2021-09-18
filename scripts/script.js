@@ -19,25 +19,36 @@ let people = 0;
 let bill = 0;
 
 const showinfo = () => {
-	if (!$billInput.value) {
+	if (!$billInput.value || $billInput.value < 0) {
 		$billError.classList.add('active');
-		return;
+		$billInput.classList.add('active');
 	} else {
 		$billError.classList.remove('active');
+		$billInput.classList.remove('active');
 	}
-	if (!$peopleInput.value) {
+	if (!$peopleInput.value || $peopleInput.value <= 0) {
 		$peopleError.classList.add('active');
+		$peopleInput.classList.add('active');
 	} else {
 		$peopleError.classList.remove('active');
+		$peopleInput.classList.remove('active');
 	}
 	const totalTip = (percentage * bill) / 100;
-	const tipForEachPerson =
-		totalTip / people === Infinity ? 0 : totalTip / people;
+	const tipForEachPerson = totalTip / people;
+	const totalForEachPerson = totalTip / people + bill / people;
 
-	if (isNaN(totalTip) || isNaN(tipForEachPerson)) return;
+	if (isNaN(tipForEachPerson) || isNaN(totalForEachPerson)) return;
 
-	$tipAmount.innerHTML = `${totalTip.toFixed(2)}`;
-	$tipTotal.innerHTML = `${tipForEachPerson.toFixed(2)}`;
+	$tipAmount.innerHTML = `$${
+		tipForEachPerson === Infinity || tipForEachPerson < 0
+			? '0.00'
+			: tipForEachPerson.toFixed(2)
+	}`;
+	$tipTotal.innerHTML = `$${
+		totalForEachPerson === Infinity || totalForEachPerson < 0
+			? '0.00'
+			: totalForEachPerson.toFixed(2)
+	}`;
 };
 
 document.addEventListener('input', event => {
